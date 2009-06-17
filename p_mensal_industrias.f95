@@ -8,7 +8,8 @@ REAL	:: industrias(7, 3), producao(3), media_total = 0
     DO i = 1, 3
       WRITE (*,*)
       DO j = 1, 7
-        WRITE (*,*) "Insira o valor de producao do dia ", j, " da empresa ", i, ":"
+        WRITE (*,*) "Insira o valor de producao do dia ", j, " da&
+        & empresa ", i, ":"
         READ  (*,*) industrias(j, i)
       END DO
     END DO
@@ -59,7 +60,8 @@ WRITE (*,*) "==-----------------------------------------------------=="
 WRITE (*,*) "== TOTAL : ", media_total, "                           =="
 WRITE (*,*) "==-----------------------------------------------------=="
 DO i = 1, 3
-  WRITE (*,6) " == Dias abaixo da media da industria ", i, " : ", abaixo_media(i), "            =="
+  WRITE (*,6) " == Dias abaixo da media da industria ", i, " : ",&
+        & abaixo_media(i), "            =="
 END DO
 WRITE (*,*) "========================================================="
 

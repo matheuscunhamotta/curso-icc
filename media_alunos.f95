@@ -1,5 +1,3 @@
-! Esse programa obtem 3 notas de alunos de uma turma e 
-! apresenta um relatorio formatado.
 PROGRAM Media_dos_Alunos
 IMPLICIT NONE
 

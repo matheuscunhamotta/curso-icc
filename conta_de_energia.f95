@@ -69,10 +69,14 @@ WRITE (*,*)
 WRITE (*,*)
 
 ! Apresenta o relatorio
-WRITE (*,*) "==============================================================================="
-WRITE (*,*) "====================== RELATORIO DA CONTA DE ENERGIA =========================="
-WRITE (*,*) "==============================================================================="
-WRITE (*,*) "= RESIDENCIA = L.INICIAL = L.FINAL = CONSUMO = VWH = V.CONSUMO = TAXA = CONTA ="
+WRITE (*,*) "====================================================&
+        &==========================="
+WRITE (*,*) "====================== RELATORIO DA CONTA DE ENERGIA&
+        & =========================="
+WRITE (*,*) "====================================================&
+        &==========================="
+WRITE (*,*) "= RESIDENCIA = L.INICIAL = L.FINAL = CONSUMO = VWH =&
+        & V.CONSUMO = TAXA = CONTA ="
 DO i = 1, residencias
   ! INDICE DAS VARIAVEIS - Cada linha corresponde a uma residencia!
   ! -- e cada coluna corresponde a seguinte estrutura:
@@ -84,14 +88,17 @@ DO i = 1, residencias
   !!!!!  leitura(n, 5) = Taxa  Percentual;
   !!!!!  conta(n, 1)   = Valor Percentual;
   !!!!!  conta(n, 2)   = Valor Total da conta de energia;
-  WRITE (*,*) "=                                                                             ="
-  WRITE (*,50) " = ", nome(i), leitura(i, 1), leitura(i, 2), leitura(i, 3), kwh(i), leitura(i, 4), conta(i, 1), conta(i, 2), " ="
+  WRITE (*,*) "=                                                 &
+        &                            ="
+  WRITE (*,50) " = ", nome(i), leitura(i, 1), leitura(i, 2), leitura(i, 3), &
+    &kwh(i), leitura(i, 4), conta(i, 1), conta(i, 2), " ="
 END DO
-WRITE (*,*) "=                                                                             ="
-WRITE (*,*) "==============================================================================="
+WRITE (*,*) "====================================================&
+        &==========================="
 
 1 FORMAT (A, I3, A)
 2 FORMAT (A, A8, A)
-50 FORMAT (A, A10, 3X, F6.2, 6X, F6.2, 3X, F6.2, 3X, F6.2, 1X, F6.2, 5X, F6.2, 2X, F6.2, A)
+50 FORMAT (A, A10, 3X, F6.2, 6X, F6.2, 3X, F6.2, 3X, F6.2, 1X, F6.2, &
+        &5X, F6.2, 2X, F6.2, A)
 
 END PROGRAM

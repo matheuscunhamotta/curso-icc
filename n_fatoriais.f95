@@ -1,8 +1,8 @@
 PROGRAM N_Fatoriais
 IMPLICIT NONE
 
-INTEGER	:: i, j, n_fatores
-REAL	:: fatorial(100,2) = 1
+INTEGER :: i, j, n_fatores
+REAL    :: fatorial(100,2) = 1
 
 WRITE (*,*) "Quantos 'fatoriais' deseja calcular? (NO MAXIMO 100)"
 READ  (*,*) n_fatores
