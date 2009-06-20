@@ -1,3 +1,7 @@
+! FAZER COM SUBROTINAS
+
+
+
 PROGRAM Producao_Mensal_de_3_Industrias
 IMPLICIT NONE
 
