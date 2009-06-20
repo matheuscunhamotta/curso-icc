@@ -2,7 +2,7 @@ PROGRAM Producao_Mensal_de_3_Industrias
 IMPLICIT NONE
 
 INTEGER :: i, j, k, abaixo_media(31)
-REAL	:: industrias(7, 3), producao(3), media_total = 0
+REAL    :: industrias(7, 3), producao(3), media_total = 0
 
 ! Pega os valores
     DO i = 1, 3
