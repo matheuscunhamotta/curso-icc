@@ -5,6 +5,19 @@ INTEGER                 :: i, k, j, n_triang
 REAL                    :: triangulo(100,4)
 CHARACTER (len=10)      :: nome_triang(100), tipo(100)
 
+CALL entrada(n_triang, triangulo, nome_triang)
+CALL calculo(n_triang, triangulo, tipo)
+CALL saida(n_triang, triangulo, tipo, nome_triang)
+
+END PROGRAM
+
+! Subrotina de entrada
+SUBROUTINE entrada(n_triang, triangulo, nome_triang)
+
+INTEGER                 :: i, k, n_triang
+REAL                    :: triangulo(100,4)
+CHARACTER (len=10)      :: nome_triang(100)
+
 ! -------------- Modulo: Obter dados
 WRITE (*,*) "Informe a quantidade de triangulos: (NO MAXIMO 100)"
 READ  (*,*) n_triang
@@ -49,6 +62,14 @@ WRITE (*,*)
     GOTO 10
   END IF
 END DO
+END SUBROUTINE
+
+! Subrotina calculo
+SUBROUTINE calculo(n_triang, triangulo, tipo)
+
+INTEGER                 :: i, n_triang
+REAL                    :: triangulo(100,4)
+CHARACTER (len=10)      :: tipo(100)
 
 ! -------------- Modulo: Calcular a area do triangulo
 ! Assumindo que LADO 1 sempre sera' a medida da altura, temos:
@@ -58,18 +79,27 @@ END DO
 
 ! -------------- Modulo: Verificar os tipos de triangulo
 DO i = 1, n_triang
-  IF ( triangulo(i, 1) == triangulo(i, 2) &
-       & .AND. triangulo(i, 2) == triangulo(i, 3)) THEN
+  IF ((triangulo(i, 1) == triangulo(i, 2)) &
+       & .AND. (triangulo(i, 2) == triangulo(i, 3))) THEN
     tipo(i) = "Equilatero"
   ELSE
-    IF ( triangulo(i, 1) == triangulo(i, 2) &
-         & .OR. triangulo(i, 1) == triangulo(i, 3)) THEN
-      tipo(i) = "Isosceles"
-    ELSE
+    IF ((triangulo(i, 1) /= triangulo(i, 2)) &
+         & .AND. (triangulo(i, 2) /= triangulo(i, 3)) .AND. &
+         & (triangulo(i, 3) /= triangulo(i, 1))) THEN
       tipo(i) = "Escaleno"
+    ELSE
+      tipo(i) = "Isosceles"
     END IF
   END IF
 END DO
+END SUBROUTINE
+
+! Subrotina saida
+SUBROUTINE saida(n_triang, triangulo, tipo, nome_triang)
+
+INTEGER                 :: i, n_triang
+REAL                    :: triangulo(100,4)
+CHARACTER (len=10)      :: nome_triang(100), tipo(100)
 
 ! -------------- Modulo: Exibir Relatorio
 WRITE (*,*)
@@ -78,7 +108,7 @@ WRITE (*,*)
 WRITE (*,*) "=========================================================="
 WRITE (*,*) "============ RELATORIO DA AREA DO TRIANGULO =============="
 WRITE (*,*) "=========================================================="
-WRITE (*,*) "===== TRIANGULO ====  BASE  === ALTURA ==   AREA   ======="
+WRITE (*,*) "===== TRIANGULO ====  BASE  === ALTURA ==    AREA  ======="
 DO i = 1, n_triang
   WRITE (*,*) "=                                                        ="
   WRITE (*,50) " = ", i, triangulo(i,1), triangulo(i,2), triangulo(i,4), "  ="
@@ -95,13 +125,13 @@ WRITE (*,*) "=================== RELATORIO DE INFORMACOES DO TRIA&
         &NGULO ====================="
 WRITE (*,*) "====================================================&
         &==========================="
-WRITE (*,*) "===   NOME  =====    L1   =====    L2    =====    L3&
-        &    =====    TIPO    ======"
+WRITE (*,*) "==  NOME  ====    L1    ====    L2    ====    L3&
+        &    ====  TIPO         ========"
 DO i = 1, n_triang
   WRITE (*,*) "=                                                 &
         &                            ="
   WRITE (*,55) " = ", nome_triang(i), triangulo(i,1), triangulo(i,2), &
-        &triangulo(i,3), tipo(i), " ="
+        &triangulo(i,3), tipo(i), "     ="
 END DO
 WRITE (*,*) "=                                                   &
         &                          ="
@@ -109,5 +139,6 @@ WRITE (*,*) "====================================================&
         &==========================="
 
 50 FORMAT (A, 8X, I1, 10X, F6.2, 4X, F6.2, 7X, F6.2, 5x, A)
-55 FORMAT (A, 4X, A6, F14.2, F14.2, 2X, F14.2, 6X, A10, 5X, A)
-END PROGRAM
+55 FORMAT (A, 2X, A6, 1X, F12.2, 2X, F12.2, 2X, F12.2, 7X, A10, 5X, A)
+
+END SUBROUTINE

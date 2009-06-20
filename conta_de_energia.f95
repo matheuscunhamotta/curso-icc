@@ -5,6 +5,19 @@ CHARACTER (len=10)      :: nome(100)
 INTEGER                 :: i, residencias
 REAL                    :: kwh(100), leitura(100,5), conta(100,2)
 
+CALL entrada(residencias, nome, leitura)
+CALL calcula(residencias, kwh, leitura, conta)
+CALL saida(nome, residencias, kwh, leitura, conta)
+
+END PROGRAM
+
+! Subrotina entrada
+SUBROUTINE entrada(residencias, nome, leitura)
+
+CHARACTER (len=10)      :: nome(100)
+INTEGER                 :: i, residencias
+REAL                    :: leitura(100,5)
+
 WRITE (*,*) "Informe a quantidade de residencias: (NO MAXIMO 100)"
 READ  (*,*) residencias
 WRITE (*,*)
@@ -23,6 +36,15 @@ DO i = 1, residencias
   WRITE (*,*) "________________________________________________________"
   WRITE (*,*)
 END DO
+1 FORMAT (A, I3, A)
+        2 FORMAT (A, A8, A)
+END SUBROUTINE
+
+! Subrotina calcula
+SUBROUTINE calcula(residencias, kwh, leitura, conta)
+
+INTEGER                 :: i, residencias
+REAL                    :: kwh(100), leitura(100,5), conta(100,2)
 
 DO i = 1, residencias
   ! Calcula o consumo
@@ -64,6 +86,14 @@ DO i = 1, residencias
   ! Calcula o valor total da conta
   conta(i, 2) = leitura(i, 4) + conta(i, 1)
 END DO
+END SUBROUTINE
+
+! Subrotina saida
+SUBROUTINE saida(nome, residencias, kwh, leitura, conta)
+
+CHARACTER (len=10)      :: nome(100)
+INTEGER                 :: i, residencias
+REAL                    :: kwh(100), leitura(100,5), conta(100,2)
 
 WRITE (*,*)
 WRITE (*,*)
@@ -96,9 +126,6 @@ END DO
 WRITE (*,*) "====================================================&
         &==========================="
 
-1 FORMAT (A, I3, A)
-2 FORMAT (A, A8, A)
 50 FORMAT (A, A10, 3X, F6.2, 6X, F6.2, 3X, F6.2, 3X, F6.2, 1X, F6.2, &
         &5X, F6.2, 2X, F6.2, A)
-
-END PROGRAM
+END SUBROUTINE

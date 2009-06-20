@@ -6,11 +6,23 @@ INTEGER            :: i, unitarios
 REAL               :: produtos(100, 4), total = 0
 REAL               :: taxa(100), desconto(100)
 
+CALL entrada(unitarios, n_prod, produtos)
+CALL calcula(unitarios, produtos, total, taxa, desconto)
+CALL saida(unitarios, n_prod, produtos, total, desconto)
+
+END PROGRAM
+
+! Subrotina entrada
+SUBROUTINE entrada(unitarios, n_prod, produtos)
+
+CHARACTER (len=10) :: n_prod(100)
+INTEGER            :: i, unitarios
+REAL               :: produtos(100, 4)
+
 WRITE (*,*) "Informe a quantidade de produtos comprados:"
 READ  (*,*) unitarios
 WRITE (*,*)
 
-! Obtendo os dados
 DO i = 1, unitarios
   WRITE (*,*) "Informe o nome do produto ", i, " :"
   READ  (*,*) n_prod(i)
@@ -19,6 +31,14 @@ DO i = 1, unitarios
   WRITE (*,*) "Qual o preco unitario de ", n_prod(i), " :"
   READ  (*,*) produtos(i, 2)
 END DO
+END SUBROUTINE
+
+! Subrotina calcula
+SUBROUTINE calcula(unitarios, produtos, total, taxa, desconto)
+
+INTEGER            :: i, unitarios
+REAL               :: produtos(100, 4)
+REAL               :: taxa(100), desconto(100)
 
 ! Calculando a taxa de desconto
 DO i = 1, unitarios
@@ -54,6 +74,15 @@ END DO
 DO i = 1, unitarios
   total = produtos(i, 4) + total
 END DO
+END SUBROUTINE
+
+! Subrotina saida
+SUBROUTINE saida(unitarios, n_prod, produtos, total, desconto)
+
+CHARACTER (len=10) :: n_prod(100)
+INTEGER            :: i, unitarios
+REAL               :: produtos(100, 4), total
+REAL               :: desconto(100)
 
 WRITE (*,*)
 WRITE (*,*)
@@ -82,7 +111,6 @@ WRITE (*,*) "=                                                   &
 WRITE (*,*) "====================================================&
         &==========================="
 
-50 FORMAT (A, 3x, A6, 3X, F6.2, 9X, F6.2, 3X, F6.2, 2X, F6.2, 8X, F6.2, 10x, A)
-51 FORMAT (A, 4x, F6.2, 4x, A)
-
-END PROGRAM
+50 FORMAT (A, 3x, A6, 4X, F6.2, 7X, F6.2, 4X, F6.2, 2X, F6.2, 7X, F6.2, 10x, A)
+51 FORMAT (A, 3x, F6.2, 4x, A)
+END SUBROUTINE
