@@ -32,8 +32,8 @@ SUBROUTINE dados(numdias, prod_ind, soma_ind, med_ind, dia)
       DO k = 1, 3
         DO i = 1, numdias
           WRITE (lm1,'(A,I0,A)') 'entrada',k,'.txt'
-          OPEN (k*10,file=lm1)
-          READ (k*10,5) dia(i), prod_ind(i,k)
+          OPEN  (k*10,file=lm1)
+          READ  (k*10,5) dia(i), prod_ind(i,k)
         END DO
         CLOSE (k*10)
       END DO
@@ -53,7 +53,7 @@ SUBROUTINE dados(numdias, prod_ind, soma_ind, med_ind, dia)
       ! Gravando os dados nos arquivos
       DO i = 1, 3
         WRITE (lm2, '(A,I0,A)') 'saida',i,'.txt'
-        OPEN (i*100,file=lm2)
+        OPEN  (i*100,file=lm2)
         WRITE (i*100,*) "-------- INDUSTRIA ", i, " --------"
         WRITE (i*100,*)
         WRITE (i*100,*) "Referente a ", numdias, " dias uteis:"
