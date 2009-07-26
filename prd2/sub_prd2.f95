@@ -38,7 +38,6 @@ SUBROUTINE dados(numdias, prod_ind, soma_ind, med_ind, dia)
         CLOSE (k*10)
       END DO
       5 FORMAT (I2, F11.3)
-
       ! Calculando os dados
       soma_ind(1:3) = 0
       DO k = 1, 3
@@ -49,7 +48,6 @@ SUBROUTINE dados(numdias, prod_ind, soma_ind, med_ind, dia)
       DO k = 1, 3
         med_ind(k) = soma_ind(k) / numdias
       END DO
-
       ! Gravando os dados nos arquivos
       DO i = 1, 3
         WRITE (lm2, '(A,I0,A)') 'saida',i,'.txt'
